@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!--
+    =========================================
+    LECCIÓN 1: LA CABEZA DEL DOCUMENTO (HEAD)
+    =========================================
+    Todo lo que está aquí NO se ve en la página,
+    pero le dice al navegador cómo mostrarla.
+    -->
+
+    <!-- Esto permite usar acentos y ñ correctamente -->
+    <meta charset="UTF-8">
+
+    <!-- Esto hace que se vea bien en celulares -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- El título que aparece en la pestaña del navegador -->
+    <title>Acelerador Lovable | Aprende IA desde Cero</title>
+
+    <!-- Descripción para Google cuando busquen tu página -->
+    <meta name="description" content="Aprende a crear aplicaciones con IA. Talleres de Lovable, prompts y herramientas de inteligencia artificial. ¡Lovable Pro GRATIS!">
+
+    <!-- Conectamos con Google Fonts para letras bonitas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Iconos gratis de Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!--
+    =========================================
+    LECCIÓN 2: LOS ESTILOS CSS
+    =========================================
+    CSS = Cómo se VE tu página (colores, tamaños, posiciones)
+    Cada bloque tiene: selector { propiedad: valor; }
+    -->
+    <style>
+        /* ===== VARIABLES DE COLORES ===== */
+        /*
+        Aquí definimos los colores UNA vez
+        y los usamos en toda la página con var(--nombre)
+        Así si quieres cambiar un color, solo lo cambias aquí
+        */
+        :root {
+            --color-fondo: #0a0a0b;           /* Negro profundo */
+            --color-fondo-card: #18181b;       /* Gris oscuro para tarjetas */
+            --color-primario: #8b5cf6;         /* Morado vibrante */
+            --color-primario-hover: #a78bfa;   /* Morado más claro al pasar mouse */
+            --color-secundario: #06b6d4;       /* Cyan/turquesa */
+            --color-acento: #f59e0b;           /* Naranja/dorado */
+            --color-texto: #ffffff;            /* Blanco para texto */
+            --color-texto-suave: #a1a1aa;      /* Gris para texto secundario */
+            --color-borde: #27272a;            /* Gris para bordes */
+        }
+
+        /* ===== RESET BÁSICO ===== */
+        /* Quitamos márgenes por defecto del navegador */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== ESTILOS DEL BODY ===== */
+        /* Body = todo el cuerpo de la página */
+        body {
+            font-family: 'Inter', sans-serif;  /* Tipo de letra */
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;                   /* Espacio entre líneas */
+        }
+
+        /* ===== NAVEGACIÓN ===== */
+        nav {
+            position: fixed;                    /* Se queda fija arriba */
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 11, 0.8); /* Fondo semi-transparente */
+            backdrop-filter: blur(10px);        /* Efecto de vidrio borroso */
+            z-index: 1000;                      /* Siempre encima de todo */
+            display: flex;
+            justify-content: space-between;     /* Logo a la izq, menú a la der */
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;  /* Texto con gradiente */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;                          /* Espacio entre links */
+            list-style: none;                   /* Quitar puntos de lista */
+        }
+
+        .nav-links a {
+            color: var(--color-texto-suave);
+            text-decoration: none;              /* Quitar subrayado */
+            transition: color 0.3s;             /* Animación suave */
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primario);       /* Cambia color al pasar mouse */
+        }
+
+        /* ===== SECCIÓN HERO (PRESENTACIÓN PRINCIPAL) ===== */
+        .hero {
+            min-height: 100vh;                  /* Altura completa de pantalla */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background:
+                radial-gradient(ellipse at top, rgba(139, 92, 246, 0.15), transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(6, 182, 212, 0.1), transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid var(--color-primario);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--color-primario);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--color-texto-suave);
+            margin-bottom: 2rem;
+        }
+
+        /* ===== BOTONES ===== */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);        /* Sube un poco */
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--color-borde);
+            color: var(--color-texto);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-primario);
+        }
+
+        /* ===== SECCIONES GENERALES ===== */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;                     /* Centrar contenedor */
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-texto-suave);
+            margin-bottom: 3rem;
+        }
+
+        /* ===== TARJETAS DE SERVICIOS ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--color-fondo-card);
+            border: 1px solid var(--color-borde);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--color-primario);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: var(--color-texto-suave);
+            font-size: 0.95rem;
+        }
+
+        /* ===== SECCIÓN REGALO ESPECIAL ===== */
+        .gift-section {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+            border-radius: 24px;
+            margin: 2rem;
+            padding: 4rem 2rem;
+            text-align: center;
+            border: 1px solid var(--color-borde);
+        }
+
+        .gift-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--color-acento);
+            color: #000;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .gift-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .gift-section h2 span {
+            color: var(--color-acento);
+        }
+
+        /* ===== SOBRE MÍ ===== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 16px;
+            border: 2px solid var(--color-borde);
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: var(--color-texto-suave);
+            margin-bottom: 1rem;
+        }
+
+        /* ===== CONTACTO ===== */
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            background: var(--color-fondo-card);
+            border: 1px solid var(--color-borde);
+            border-radius: 12px;
+            color: var(--color-texto);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            border-color: var(--color-primario);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--color-borde);
+            color: var(--color-texto-suave);
+        }
+
+        /* ===== RESPONSIVE (para celulares) ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;                  /* Ocultar menú en móvil */
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;     /* Una columna en móvil */
+            }
+
+            .btn-secondary {
+                display: block;
+                margin: 1rem 0 0 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+    =========================================
+    LECCIÓN 3: EL CUERPO DEL DOCUMENTO (BODY)
+    =========================================
+    Aquí va TODO lo que se ve en la página.
+    HTML usa "etiquetas" que abren <tag> y cierran </tag>
+    -->
+
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <div class="logo">⚡ ACELERADOR LOVABLE</div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#regalo">Regalo</a></li>
+            <li><a href="#sobre-mi">Sobre Mí</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO: Primera sección que ven los visitantes -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <span class="badge">🚀 Talleres 2026</span>
+            <h1>
+                Aprende a crear apps con
+                <span>Inteligencia Artificial</span>
+            </h1>
+            <p>
+                Te enseñamos a usar Lovable, crear prompts efectivos y dominar
+                las herramientas de IA. Sin experiencia previa. Sin excusas.
+            </p>
+            <a href="#regalo" class="btn btn-primary">Obtener Lovable Pro GRATIS</a>
+            <a href="#servicios" class="btn btn-secondary">Ver Talleres</a>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Talleres</h2>
+            <p class="section-subtitle">Aprende paso a paso, desde cero hasta crear tus propias aplicaciones</p>
+
+            <div class="services-grid">
+                <!-- Tarjeta 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i data-lucide="sparkles" style="color: white;"></i>
+                    </div>
+                    <h3>Taller Básico de Lovable</h3>
+                    <p>Aprende a usar Lovable desde cero. Crea tu primera aplicación en menos de una hora sin escribir código.</p>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i data-lucide="message-square" style="color: white;"></i>
+                    </div>
+                    <h3>Prompts que Funcionan</h3>
+                    <p>Descubre cómo hablarle a la IA para obtener exactamente lo que necesitas. Técnicas probadas y ejemplos reales.</p>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i data-lucide="rocket" style="color: white;"></i>
+                    </div>
+                    <h3>Nivel Avanzado</h3>
+                    <p>Integra APIs, bases de datos y funcionalidades avanzadas. Crea aplicaciones profesionales completas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGALO ESPECIAL -->
+    <section id="regalo">
+        <div class="gift-section">
+            <span class="gift-badge">🎁 OFERTA ESPECIAL 2026</span>
+            <h2>Te regalamos <span>Lovable Pro</span></h2>
+            <p style="color: var(--color-texto-suave); max-width: 600px; margin: 0 auto 2rem;">
+                Queremos que no tengas ninguna excusa para empezar.
+                Al unirte a nuestros talleres, recibes acceso a la versión Premium de Lovable
+                completamente GRATIS.
+            </p>
+            <a href="#contacto" class="btn btn-primary">¡Quiero mi Lovable Pro!</a>
+        </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi">
+        <div class="container">
+            <div class="about-content">
+                <div>
+                    <!-- Aquí irá tu foto -->
+                    <div style="width: 100%; height: 400px; background: var(--color-fondo-card); border-radius: 16px; border: 2px dashed var(--color-borde); display: flex; align-items: center; justify-content: center; color: var(--color-texto-suave);">
+                        📷 Tu foto aquí
+                    </div>
+                </div>
+                <div class="about-text">
+                    <span class="badge">Hola, soy</span>
+                    <h2>Maired Hernandez</h2>
+                    <p>
+                        Soy facilitadora de tecnología IA. Mi misión es democratizar
+                        el acceso a las herramientas de inteligencia artificial para que
+                        cualquier persona pueda crear sus propias aplicaciones.
+                    </p>
+                    <p>
+                        Creo firmemente que la tecnología debe ser accesible para todos.
+                        Por eso creé el <strong>Acelerador Lovable</strong>: para guiarte
+                        paso a paso en este mundo de posibilidades.
+                    </p>
+                    <p>
+                        No necesitas saber programar. No necesitas experiencia.
+                        Solo necesitas las ganas de aprender.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">¿Listo para empezar?</h2>
+            <p class="section-subtitle">Contáctanos y únete a la próxima generación de creadores</p>
+
+            <div class="contact-links">
+                <a href="mailto:casagrandegrupoinmobiliario@gmail.com" class="contact-link">
+                    <i data-lucide="mail"></i>
+                    Email
+                </a>
+                <a href="#" class="contact-link">
+                    <i data-lucide="instagram"></i>
+                    Instagram
+                </a>
+                <a href="#" class="contact-link">
+                    <i data-lucide="message-circle"></i>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Acelerador Lovable. Creado con ❤️ y mucha IA.</p>
+    </footer>
+
+    <!-- Activar los iconos de Lucide -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
